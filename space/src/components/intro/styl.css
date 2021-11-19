@@ -1,0 +1,52 @@
+@font-face {
+    font-family: Lora;
+    src: url("https://fonts.googleapis.com/css?  family=Lora:400,400i,700,700i");
+}
+.container {
+    width:100%;
+    height: 10em;
+    position: absolute ;
+}
+.container svg{
+    margin: 0;
+}
+svg text {
+    font-family: Lora;
+    letter-spacing: 10px;
+    stroke: #cc8cd1;
+    font-size: 100px;
+    font-weight: 700;
+    stroke-width: 3;
+    animation: textAnimate 5s infinite alternate;
+  }
+  
+@keyframes textAnimate {
+    0% {
+      stroke-dasharray: 0 50%;
+      stroke-dashoffset:  20%;
+      fill:hsl(240, 76%, 71%)
+         }
+    100% {
+      stroke-dasharray: 50% 0;
+      stroke-dashoffstet: -20%;
+      fill: hsla(189, 68%, 75%,0%)
+         }
+    }
+
+@media screen and (max-width: 888px) {
+    svg text {
+            font-size:80px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    svg text {
+        font-size:60px;
+    }
+}
+@media screen and (max-width: 456px) {
+    svg text {
+        font-size:30px;
+    }
+}

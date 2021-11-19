@@ -4,6 +4,7 @@ import Countdown from "./components/countdown";
 function App() {
   return (
     <div className="App">
+      <Intro />
       <Galaxy />
       <LoginForm />
       <Countdown />
