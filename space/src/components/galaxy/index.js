@@ -344,8 +344,8 @@ class Galaxy extends Component {
     scene.add(camera);
 
     //--------------------CAMERA CONTROLS----------------
-    const controls = new OrbitControls(camera, document.getElementById("root"));
-    controls.enableDamping = true;
+    //const controls = new OrbitControls(camera, document.getElementById("root"));
+    //controls.enableDamping = true;
 
     //-----------------------DEBUGGING----------------------
     // gui
@@ -383,7 +383,7 @@ class Galaxy extends Component {
 
       //particlesMaterial.uniforms.uTime.value = elapsedTime;
 
-      controls.update();
+     // controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(tick);
     };

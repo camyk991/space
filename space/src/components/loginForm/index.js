@@ -70,17 +70,17 @@ function LoginForm() {
 
   return (
     <div className="loginForm">
-
+        <h1>Welcome to Galaxy Simulator</h1>
       <div className="fields">
         <input className="email" ref={emailRef} placeholder="Email" />
         <input className="password" ref={passwordRef} type="password" placeholder="Password" />
       </div>
+        
+      <button className="signup" disabled={loading || currentUser} onClick={handleSignup}>Sign Up</button>
 
-      <button disabled={loading || currentUser} onClick={handleSignup}>Sign Up</button>
+      <button className="login" disabled={loading || currentUser} onClick={handleLogin}>Log In</button>
 
-      <button disabled={loading || currentUser} onClick={handleLogin}>Log In</button>
-
-      <button disabled={loading || !currentUser} onClick={handleLogout}>Log out</button>
+      
     </div>
   );
 }
