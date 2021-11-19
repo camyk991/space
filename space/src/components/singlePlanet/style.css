@@ -1,0 +1,30 @@
+.singlePlanetContainer {
+    position: fixed;
+    left: auto;
+    right: 300px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 40%;
+    width: 100%;
+    color: #000;
+    padding: 30px;
+    background: #ffffffac;
+    
+}
+
+.data-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.planet-heading {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.data-wrapper .row {
+    padding: 10px 0;
+    border-bottom: 1px solid #00000019;
+}

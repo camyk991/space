@@ -23,7 +23,7 @@ import starsColorImage from "./static/stars.png";
 class Galaxy extends Component {
   componentDidMount() {
     //--------------------DEBUGGING-------------------
-    const gui = new dat.GUI();
+    // const gui = new dat.GUI();
 
     //------------------LOADING TEXTURES---------------
     const textureLoader = new THREE.TextureLoader();
@@ -365,8 +365,8 @@ class Galaxy extends Component {
     scene.add(camera);
 
     //--------------------CAMERA CONTROLS----------------
-    const controls = new OrbitControls(camera, document.getElementById("root"));
-    controls.enableDamping = true;
+    // const controls = new OrbitControls(camera, document.getElementById("root"));
+    // controls.enableDamping = true;
 
     //-----------------------DEBUGGING----------------------
     // gui
@@ -404,7 +404,7 @@ class Galaxy extends Component {
 
       //particlesMaterial.uniforms.uTime.value = elapsedTime;
 
-      controls.update();
+      // controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(tick);
     };

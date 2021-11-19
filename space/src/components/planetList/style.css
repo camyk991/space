@@ -1,0 +1,79 @@
+.search-menu {
+    color: #fff;
+    display: inline-flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    max-width: 300px;
+    width: 100%;
+    overflow: auto;
+}
+
+.planet-list-wrapper {
+    background:rgba(0, 0, 0, 0.598);
+    width: 0%;
+    overflow: hidden;
+    transition: width ease .4s;
+    align-self: flex-end;
+    white-space: nowrap;
+    margin-top: 40px;
+}
+
+.show .planet-list-wrapper{
+    width: 100%;
+    overflow:auto;
+}
+
+.planet-list-wrapper::-webkit-scrollbar {
+    width: 10px;
+}
+
+.planet-list-wrapper::-webkit-scrollbar-track {
+    background: #ffffff19;
+}
+
+.planet-list-wrapper::-webkit-scrollbar-thumb {
+    background: #ffffff62;
+  }
+
+.search-menu input {
+    background: transparent;
+    border: 0;
+    padding: 0px;
+    height: 40px;
+    width: 0;
+    transition: all ease .4s;
+    border-bottom: 2px solid #ffffffac;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.show input {
+    width: calc(100% - 40px);
+    padding: 0px 20px;
+}
+
+.searchbar-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.search-icon {
+    width: 40px;
+    height: 40px;
+    background:#ffffffac url('https://icon-library.com/images/svg-search-icon/svg-search-icon-4.jpg');
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 0%;
+    margin-right: 10px;
+}
+
+.show .search-icon {
+    margin-right: 0;
+}
