@@ -1,0 +1,38 @@
+
+
+ .loginForm{
+     position: fixed;
+     border: 3px solid #403c3c;
+     border-radius: 20px;
+     width: 500px;
+     top: 40%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background-color: rgba(255, 255, 255, 0.5);
+     z-index: 1;
+ }
+  
+::placeholder{
+    color: white;
+    
+}
+
+  input {
+    display: block;
+    font-size: 18px;
+    margin: 50px auto;
+    width: 400px;
+    height: 50px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: lightgrey;
+  }
+  
+  button {
+      height: 50px;
+    font-size: 30px;
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+    border-radius: 20px;
+  }
