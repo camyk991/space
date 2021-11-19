@@ -1,13 +1,16 @@
 import Galaxy from "./components/galaxy";
 import LoginForm from "./components/loginForm";
 import Countdown from "./components/countdown";
+import Intro from "./components/intro";
+import {useState} from 'react';
 function App() {
   return (
     <div className="App">
       <Intro />
-      <Galaxy />
-      <LoginForm />
       <Countdown />
+      <Galaxy />
+      {/* <LoginForm /> */}
+      
     </div>
 
   );
