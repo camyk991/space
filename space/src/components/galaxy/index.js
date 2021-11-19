@@ -165,74 +165,53 @@ class Galaxy extends Component {
         vertexShader: `
             uniform float uSize;
             uniform float uTime;
-
             attribute float aScale;
             attribute vec3 aRandomness;
-
             varying vec3 vColor;
-
             void main(){
                 //position
                 vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-
                 //spin
                 float angle = atan(modelPosition.x, modelPosition.z);
                 float distanceToCenter = length(modelPosition.xz);
                 float angleOffset = (1.0 / distanceToCenter) * uTime * 0.2;
                 angle += angleOffset;
-
                 //animated galaxy
                 modelPosition.x = cos(angle) * distanceToCenter;
                 modelPosition.z = sin(angle) * distanceToCenter;
-
                 //randomness
                 modelPosition.xyz += aRandomness;
-
-
                 vec4 viewPosition = viewMatrix * modelPosition;
                 vec4 projectedPosition = projectionMatrix * viewPosition;
                 gl_Position = projectedPosition;
-
                 //size
                 gl_PointSize = uSize * aScale;
-
                 //getting size attenetion (particles closer to the camera will be bigger)
                 gl_PointSize *= (1.0 / -viewPosition.z);
-
-
                 //sending variables
                 vColor = color;
             }
         `,
         fragmentShader: `
             varying vec3 vColor;
-
             void main(){
-
                 //----------1 way of drawing circles-----------------
                 //distance to the center
                 //float strenght = distance(gl_PointCoord, vec2(0.5));
-
                 //sharpening the edges
                 //strenght = step(0.5, strenght);
-
                 //drawing circles instead of squares
                 //strenght = 1.0 - strenght;
-
-
                 //--------------2 way of drawing circles------------------
                 //diffuse point
                 // float strenght = distance(gl_PointCoord, vec2(0.5));
                 // strenght *= 2.0;
                 // strenght = 1.0 - strenght;
-
-
                 //--------------3 way of drawing circles------------------
                 //light point
                 float strenght = distance(gl_PointCoord, vec2(0.5));
                 strenght = 1.0 - strenght;
                 strenght = pow(strenght, 10.0);
-
                 //mixing colors
                 vec3 color = mix(vec3(0.0), vColor, strenght);
                 gl_FragColor = vec4(color,1.0);
@@ -365,8 +344,8 @@ class Galaxy extends Component {
     scene.add(camera);
 
     //--------------------CAMERA CONTROLS----------------
-    // const controls = new OrbitControls(camera, document.getElementById("root"));
-    // controls.enableDamping = true;
+    //const controls = new OrbitControls(camera, document.getElementById("root"));
+    //controls.enableDamping = true;
 
     //-----------------------DEBUGGING----------------------
     // gui
@@ -404,7 +383,7 @@ class Galaxy extends Component {
 
       //particlesMaterial.uniforms.uTime.value = elapsedTime;
 
-      // controls.update();
+     // controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(tick);
     };

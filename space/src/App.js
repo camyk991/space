@@ -1,7 +1,11 @@
-import "./App.css";
 import Galaxy from "./components/galaxy";
 import React, {useState, useEffect} from 'react'
 import PlanetList from './components/planetList'
+import LoginForm from "./components/loginForm";
+import Intro from "./components/intro";
+import Logo from './components/logo';
+import Countdown from "./components/countdown";
+
 
 function App() {
 
@@ -30,9 +34,15 @@ function App() {
 
   return (
     <div className="App">
+      <Intro />
+      <Countdown />
       <Galaxy />
       <PlanetList planets={planets}/>
+      <LoginForm />
+      <Logo />
+    
     </div>
+
   );
 }
 
