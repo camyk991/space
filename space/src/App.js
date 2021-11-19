@@ -1,5 +1,7 @@
 import Galaxy from "./components/galaxy";
 import LoginForm from "./components/loginForm";
+import Intro from "./components/intro";
+import Logo from './components/logo';
 
 function App() {
   return (
@@ -7,6 +9,7 @@ function App() {
       <Intro />
       <Galaxy />
       <LoginForm />
+      <Logo />
     
     </div>
 
