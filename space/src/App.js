@@ -1,14 +1,15 @@
-import "./App.css";
 import Galaxy from "./components/galaxy";
-import Intro from './components/intro'
+import LoginForm from "./components/loginForm";
 
 function App() {
   return (
     <div className="App">
       <Intro />
       <Galaxy />
-      
+      <LoginForm />
+    
     </div>
+
   );
 }
 
