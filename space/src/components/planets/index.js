@@ -272,8 +272,8 @@ class Planets extends Component {
     scene.add(camera);
 
     //--------------------CAMERA CONTROLS----------------
-    const controls = new OrbitControls(camera, document.getElementById("root"));
-    controls.enableDamping = true;
+    // const controls = new OrbitControls(camera, document.getElementById("root"));
+    // controls.enableDamping = true;
 
     //-----------------------RENDERER-------------------
     const renderer = new THREE.WebGLRenderer();
@@ -309,7 +309,7 @@ class Planets extends Component {
         planetsMeshArray[i].rotation.y = 0.1 * elapsedTime;
       }
 
-      controls.update();
+      // controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(tick);
     };

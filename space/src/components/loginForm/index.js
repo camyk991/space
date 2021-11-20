@@ -11,9 +11,10 @@ function LoginForm({user, onLogin, setLogin}) {
   async function handleLogin() {
     setLoading(true);
     try{
+      
+      await login(emailRef.current.value, passwordRef.current.value);
       onLogin(true);
     setLogin(false);
-      await login(emailRef.current.value, passwordRef.current.value);
       
     }catch(err){
       switch(err.message)

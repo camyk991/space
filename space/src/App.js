@@ -9,21 +9,18 @@ import {useState, useEffect} from 'react';
 import "./App.css";
 import { useAuth } from "./firebase";
 
-
-      
-      
-    
-
 function App() {
 
   const currentUser = useAuth();
 
   const [login, setLogin] = useState(false);
   const [intro, setIntro] = useState(false);
+  const [chosenPlanet, setChosenPlanet] = useState('');
 
   useEffect(()=> {
     setTimeout(()=>{setLogin(true)}, 3000);  
   }, [])
+
   const [planets, setPlanets] = useState();
 
   const fetchData = async () => {
@@ -45,19 +42,15 @@ function App() {
     return fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(planets);
-  }, [planets]);
-
   return (
     <div className="App">
       <Logo />
-      {login ? <LoginForm user={currentUser} onLogin={setIntro} setLogin ={setLogin}/> : null}
+      {login && currentUser===null ? <LoginForm user={currentUser} onLogin={setIntro} setLogin ={setLogin}/> : ()=><>setIntro(true)</>}
       {intro ? <Intro /> : null}
       {intro ? <Countdown /> : null}
       <Galaxy />
-      <Planets />
-      <PlanetList planets={planets} />
+      <Planets chosen={chosenPlanet} />
+      <PlanetList planets={planets} chosen={chosenPlanet} setChosen={setChosenPlanet}/>
 
     </div>
   );

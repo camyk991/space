@@ -3,12 +3,12 @@ import SinglePlanet from "../singlePlanet";
 import React, {useState, useEffect} from 'react';
 import './style.css';
 
-const PlanetList = ({planets}) => {
+const PlanetList = ({planets, chosen, setChosen}) => {
 
     const [menu, showMenu] = useState(false);
     const [searchBar, setSearchBar] = useState('');
     const [filtered, setFilters] = useState();
-    const [chosenPlanet, setChosenPlanet] = useState('');
+    // const [chosenPlanet, setChosenPlanet] = useState('');
     const [filteredSingle, setFilteredSingle] = useState();
 
     useEffect(() => {
@@ -24,8 +24,8 @@ const PlanetList = ({planets}) => {
 
     useEffect(() => {
         // console.log(getChosenPlanet(chosenPlanet))
-        setFilteredSingle(getChosenPlanet(chosenPlanet));
-    }, [chosenPlanet])
+        setFilteredSingle(getChosenPlanet(chosen));
+    }, [chosen])
 
     const renderPlanets = (data) => {
         try {
@@ -34,7 +34,7 @@ const PlanetList = ({planets}) => {
                     key={el.id} 
                     id={el.id}
                     name={el.englishName} 
-                    setChosen={setChosenPlanet}              
+                    setChosen={setChosen}              
                 />
             ))
 
@@ -55,6 +55,7 @@ const PlanetList = ({planets}) => {
 
     return (
         <>
+            <button className="logout">Log out</button>
             {filteredSingle ? <SinglePlanet planet={filteredSingle} /> : null}
             
             <div

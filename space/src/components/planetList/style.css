@@ -52,6 +52,7 @@
     font-weight: 300;
     margin: 0;
     text-align: left;
+    border-radius: 0;
 }
 
 .show input {
@@ -78,4 +79,16 @@
 
 .show .search-icon {
     margin-right: 0;
+}
+
+.logout {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 10px;
+    padding: 5px;
+    background: #5957c7;
+    font-size: 18px;
+    width: 100px;
+    height: 40px;
 }
