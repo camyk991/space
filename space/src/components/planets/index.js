@@ -52,14 +52,13 @@ import sunColorImage from "./static/textures/sun/sunColor.jpg";
 
 import starsColorImage from "./static/stars.png";
 
-const explore = document.createElement("button");
-explore.innerHTML = "start exploring";
-explore.style.position = "absolute";
+import dat from "dat.gui";
 
 class Planets extends Component {
   componentDidMount() {
     //------------------LOADING TEXTURES---------------
     const textureLoader = new THREE.TextureLoader();
+    const gui = new dat.GUI();
 
     // const moonColorTexture = textureLoader.load(moonColorImage);
     // const moonNormalTexture = textureLoader.load(moonNormalImage);
@@ -196,7 +195,7 @@ class Planets extends Component {
           const ring = new THREE.Mesh(ringGeometry, ringMaterial);
           ring.scale.set(0.4, 0.4, 1);
           scene.add(ring);
-          ring.position.set(i * 3, 0, 0);
+          ring.position.set(i * 5, 0, 0);
           ring.rotation.set(2, 3, 2);
         }
 
@@ -218,7 +217,7 @@ class Planets extends Component {
         planetMesh.receiveShadow = true;
         planetMesh.castShadow = true;
 
-        planetMesh.position.set(i * 3, 0, 0);
+        planetMesh.position.set(i * 5, 0, 0);
         scene.add(planetMesh);
         planetsMeshArray.push(planetMesh);
       }
@@ -268,12 +267,12 @@ class Planets extends Component {
       0.1,
       100
     );
-    camera.position.set(0, 21, 2);
+    camera.position.set(-5, 0, 3);
     scene.add(camera);
 
     //--------------------CAMERA CONTROLS----------------
-    const controls = new OrbitControls(camera, document.getElementById("root"));
-    controls.enableDamping = true;
+    // const controls = new OrbitControls(camera, document.getElementById("root"));
+    // controls.enableDamping = true;
 
     //-----------------------RENDERER-------------------
     const renderer = new THREE.WebGLRenderer();
@@ -281,22 +280,38 @@ class Planets extends Component {
     this.mount.appendChild(renderer.domElement);
 
     //-------------------ANIMATE CAMERA----------------
-    //explore animation
-    let explorer = false;
 
-    explore.addEventListener("click", () => {
-      if (!gsap.isTweening(camera.position)) {
-        gsap.to(camera.position, {
-          duration: 1,
-          x: explorer ? 0 : 20,
-          y: explorer ? 1 : 3,
-          z: explorer ? 20 : 4,
-          ease: "power3.inOut",
-        });
-        explore.innerHTML = explorer ? "start exploring" : "go back";
-        explorer = !explorer;
-      }
-    });
+    // prettier-ignore
+    const cameraX = {
+      "mercure": -1.4,
+      "venus": 3.8,
+      "terre": 8.8,
+      "mars": 13.9,
+      "jupiter": 18.8,
+      "saturne": 23.9,
+      "uranus": 28.8,
+      "neptun": 33.8,
+      "pluto": 38.8,
+    };
+
+    // //equaRadius
+    // if (this.props.planets) {
+    //   console.log(this.props.planets);
+    // }
+
+    const animateCamera = function (id) {
+      gsap.to(camera.position, {
+        duration: 3,
+        x: cameraX[id],
+        y: 0,
+        z: 3,
+        ease: "power3.inOut",
+      });
+    };
+
+    animateCamera("terre");
+
+    camera.rotation.y = -1;
 
     const clock = new THREE.Clock();
     //--------------------ANIMATION------------------
@@ -309,7 +324,7 @@ class Planets extends Component {
         planetsMeshArray[i].rotation.y = 0.1 * elapsedTime;
       }
 
-      controls.update();
+      // controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(tick);
     };
@@ -322,7 +337,5 @@ class Planets extends Component {
 }
 const rootElement = document.getElementById("root");
 ReactDOM.render(<Planets />, rootElement);
-
-rootElement.appendChild(explore);
 
 export default Planets;

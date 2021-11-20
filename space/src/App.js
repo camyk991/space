@@ -38,7 +38,7 @@ function App() {
       {/* <Intro />
       <Countdown /> */}
       {/* <Galaxy /> */}
-      <Planets />
+      {planets ? <Planets planets={planets} /> : null}
       <PlanetList planets={planets} />
       {/* <LoginForm /> 
       <Logo /> */}
