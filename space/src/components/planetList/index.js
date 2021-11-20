@@ -13,10 +13,10 @@ const PlanetList = ({planets, chosen, setChosen}) => {
     const [filteredSingle, setFilteredSingle] = useState();
 
     const smallPlanetImages = {
-        "ceres": "https://www.pngkey.com/png/full/425-4254471_ceres-is-the-only-dwarf-planet-in-the.png" ,
-        "eris": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Eris-transparent.png/1200px-Eris-transparent.png",
-        "haumea": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Haumea_Rotation.gif",
-        "makemake": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Makemake-transparent-red.png"
+        "ceres": "./planets/ceres.png" ,
+        "eris": "./planets/eris.png",
+        "haumea": "./planets/haumea.gif",
+        "makemake": "./planets/makemake.png"
     }
 
     useEffect(() => {
