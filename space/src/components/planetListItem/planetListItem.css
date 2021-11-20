@@ -1,0 +1,10 @@
+span {
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.planetItemList {
+    padding: 15px 0;
+    border-bottom: 1px solid #ffffff19;
+    cursor: pointer;
+}
