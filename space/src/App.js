@@ -37,11 +37,11 @@ function App() {
     <div className="App">
       {/* <Intro />
       <Countdown /> */}
-      {/* <Galaxy /> */}
-      <Planets />
-      <PlanetList planets={planets} />
-      {/* <LoginForm /> 
-      <Logo /> */}
+      <Galaxy />
+      <PlanetList planets={planets}/>
+      <LoginForm /> 
+      {/* <Logo /> */}
+    
     </div>
   );
 }

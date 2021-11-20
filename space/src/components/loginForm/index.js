@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { signup, login,  logout, useAuth } from "../../firebase";
-import "./loginForm.css"
+import "./loginForm.css";
+
 function LoginForm() {
   const[loading, setLoading] = useState(false);
   const currentUser = useAuth();
