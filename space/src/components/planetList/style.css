@@ -50,6 +50,8 @@
     color: #fff;
     font-size: 18px;
     font-weight: 300;
+    margin: 0;
+    text-align: left;
 }
 
 .show input {

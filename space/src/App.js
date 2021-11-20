@@ -34,12 +34,12 @@ function App() {
 
   return (
     <div className="App">
-      <Intro />
-      <Countdown />
+      {/* <Intro />
+      <Countdown /> */}
       <Galaxy />
       <PlanetList planets={planets}/>
-      <LoginForm />
-      <Logo />
+      {/* <LoginForm /> 
+      <Logo /> */}
     
     </div>
 
