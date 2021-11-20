@@ -25,6 +25,8 @@ function LoginForm({user}) {
           break;
         case "Firebase: Error (auth/user-not-found).":
           setErrMessage("User not found");
+          case "Firebase: Error (auth/network-request-failed).":
+          setErrMessage("Not connected to internet");
           break;
         case "Firebase: Error (auth/internal-error).":
           setErrMessage("Provide a password");
@@ -57,6 +59,9 @@ function LoginForm({user}) {
       {
         case "Firebase: Error (auth/invalid-email).":
           setErrMessage("Invalid email");
+          break;
+          case "Firebase: Error (auth/network-request-failed).":
+          setErrMessage("Not connected to internet");
           break;
         case "Firebase: Error (auth/internal-error).":
           setErrMessage("Provide a password");
