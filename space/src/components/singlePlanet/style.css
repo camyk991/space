@@ -11,7 +11,6 @@
     background: #ffffffac;
     
 }
-
 .data-wrapper {
     display: flex;
     flex-direction: column;
@@ -22,9 +21,24 @@
 .planet-heading {
     font-size: 40px;
     margin-bottom: 30px;
+    text-align: center;
+    color : #555555;
 }
 
 .data-wrapper .row {
     padding: 10px 0;
     border-bottom: 1px solid #00000019;
+}
+.row{
+    color:rgb(73, 73, 73);
+}
+.p {
+    font-weight:700;
+    color: #243b80;
+}
+
+@media screen and (min-width: 888px) {
+    .singlePlanetContainer {
+            width:600px;
+    }
 }
