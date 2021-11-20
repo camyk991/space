@@ -1,3 +1,32 @@
-body {
-    background-color: black;
+.logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    transform: translate(-50%, -50%);
 }
+
+.fadeinOut{
+    opacity: 0;
+    animation-name: fadeInOutOpacity;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+      animation-duration: 3s;
+  }
+  
+  @keyframes fadeInOutOpacity {
+      0% {
+          opacity: 0;
+      }
+      25%
+      {
+          opacity: 1;
+      }
+      75% {
+          opacity: 1;
+      }
+      100%{
+          opacity: 0;
+      }
+  }
+

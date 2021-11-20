@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { signup, login,  logout, useAuth } from "../../firebase";
 import "./loginForm.css"
-function LoginForm() {
+function LoginForm({user, onLogin, setLogin}) {
   const[loading, setLoading] = useState(false);
-  const currentUser = useAuth();
+  const currentUser = user;
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -11,7 +11,10 @@ function LoginForm() {
   async function handleLogin() {
     setLoading(true);
     try{
+      onLogin(true);
+    setLogin(false);
       await login(emailRef.current.value, passwordRef.current.value);
+      
     }catch(err){
       switch(err.message)
       {
@@ -29,6 +32,7 @@ function LoginForm() {
           break;
       }
     }
+    
     setLoading(false);
   }
 
@@ -69,7 +73,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="loginForm">
+    <div className="loginForm fadein">
         <h1>Welcome to Galaxy Simulator</h1>
       <div className="fields">
         <input className="email" ref={emailRef} placeholder="Email" />
@@ -80,7 +84,7 @@ function LoginForm() {
 
       <button className="login" disabled={loading || currentUser} onClick={handleLogin}>Log In</button>
 
-      
+      <button disabled={ loading || !currentUser } onClick={handleLogout}>Log Out</button>
     </div>
   );
 }
