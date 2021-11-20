@@ -3,6 +3,8 @@ import * as THREE from "three";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
+import $ from "jquery";
+
 //animation
 import gsap from "gsap";
 // import { EffectComposer } from "../../../node_modules/three/examples/jsm/postprocessing/EffectComposer.js";
@@ -58,7 +60,7 @@ class Planets extends Component {
   componentDidMount() {
     //------------------LOADING TEXTURES---------------
     const textureLoader = new THREE.TextureLoader();
-    const gui = new dat.GUI();
+    // const gui = new dat.GUI();
 
     // const moonColorTexture = textureLoader.load(moonColorImage);
     // const moonNormalTexture = textureLoader.load(moonNormalImage);
@@ -290,8 +292,13 @@ class Planets extends Component {
       "jupiter": 18.8,
       "saturne": 23.9,
       "uranus": 28.8,
-      "neptun": 33.8,
-      "pluto": 38.8,
+      "neptune": 33.8,
+      "pluton": 38.8,
+      "ceres": 46,
+      "eris": 46,
+      "ceres": 46,
+      "haumea": 46,
+      "makemake": 46
     };
 
     // //equaRadius
@@ -309,7 +316,10 @@ class Planets extends Component {
       });
     };
 
-    animateCamera("terre");
+    $('.planet-list-wrapper').on('click', '.planetItemList', function(e) {
+      animateCamera($(this)[0].id);
+    })
+     
 
     camera.rotation.y = -1;
 
@@ -331,10 +341,14 @@ class Planets extends Component {
 
     tick();
   }
+
   render() {
-    return <div ref={(ref) => (this.mount = ref)} />;
+    return <div id="planets-3d" ref={(ref) => (this.mount = ref)} />;
   }
 }
+
+
+
 const rootElement = document.getElementById("root");
 ReactDOM.render(<Planets />, rootElement);
 

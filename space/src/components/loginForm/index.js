@@ -1,21 +1,21 @@
 import { useRef, useState, useEffect } from "react";
 import { signup, login,  logout, useAuth } from "../../firebase";
 import "./loginForm.css"
-function LoginForm({user, onLogin, setLogin}) {
+function LoginForm({user}) {
   const[loading, setLoading] = useState(false);
   const currentUser = user;
 
   const emailRef = useRef();
   const passwordRef = useRef();
 
+  useEffect(() => {
+    return loading;
+  }, [loading])
+
   async function handleLogin() {
     setLoading(true);
     try{
-      
       await login(emailRef.current.value, passwordRef.current.value);
-      onLogin(true);
-    setLogin(false);
-      
     }catch(err){
       switch(err.message)
       {
@@ -37,20 +37,13 @@ function LoginForm({user, onLogin, setLogin}) {
     setLoading(false);
   }
 
-  async function handleLogout(){
-    setLoading(true);
-    try{
-      await logout();
-    }catch{
-      alert("error!");
-    }
-    setLoading(false);
-  }
+ 
 
   async function handleSignup() {
+    setLoading(true);
     try {
      
-      setLoading(true);
+      
       await signup(emailRef.current.value, passwordRef.current.value);
     } catch(err) {
       switch(err.message)
@@ -74,7 +67,7 @@ function LoginForm({user, onLogin, setLogin}) {
   }
 
   return (
-    <div className="loginForm fadein">
+    <div className={`loginForm fadein`}>
         <h1>Welcome to Galaxy Simulator</h1>
       <div className="fields">
         <input className="email" ref={emailRef} placeholder="Email" />
@@ -85,7 +78,7 @@ function LoginForm({user, onLogin, setLogin}) {
 
       <button className="login" disabled={loading || currentUser} onClick={handleLogin}>Log In</button>
 
-      <button disabled={ loading || !currentUser } onClick={handleLogout}>Log Out</button>
+
     </div>
   );
 }

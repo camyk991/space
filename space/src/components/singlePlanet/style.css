@@ -4,8 +4,8 @@
     right: 320px;
     top: 50%;
     transform: translateY(-50%);
-    max-width: 40%;
-    width: 100%;
+    
+    width: calc(70% - 320px);
     color: #000;
     padding: 30px;
     background: #ffffffac;
@@ -22,7 +22,7 @@
     font-size: 40px;
     margin-bottom: 30px;
     text-align: center;
-    color : #555555;
+    color : #000;
 }
 
 .data-wrapper .row {
@@ -30,15 +30,24 @@
     border-bottom: 1px solid #00000019;
 }
 .row{
-    color:rgb(73, 73, 73);
+    color:rgb(0, 0, 0);
 }
 .p {
     font-weight:700;
     color: #243b80;
 }
 
+.planet-img {
+    width: 30%;
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+}
+
 @media screen and (min-width: 888px) {
     .singlePlanetContainer {
-            width:600px;
+            max-width:600px;
     }
 }

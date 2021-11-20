@@ -2,15 +2,17 @@ import "./style.css";
 import {useEffect} from 'react';
 
 
-const SinglePlanet = ({planet}) => {
+const SinglePlanet = ({planet, img}) => {
         return (
-            <div className="singlePlanetContainer">
+            <>
+            {img[planet.id] ? <img className="planet-img fadein" src={img[planet.id]}></img> : null}
+            <div className="singlePlanetContainer fadein">
                 <h3 className="planet-heading">{planet.englishName}</h3> 
                 <div className="data-wrapper">
                     <span className="row"><span className="p">Alternative name:</span> {planet.alternativeName ? planet.alternativeName : '-'} </span>
                     <span className="row"><span className="p">Discovered by:</span> {planet.discoveredBy ? planet.discoveredBy : '-'}</span>
                     <span className="row"><span className="p">Discovery date:</span> {planet.discoveryDate ? planet.discoveryDate : '-'}</span>
-                    <span className="row"><span className="p">Mass:</span> {planet.mass.massValue ? planet.mass.massValue : '-'}<sup>{planet.mass.massExponent}</sup> kg</span>
+                    <span className="row"><span className="p">Mass:</span> {planet.mass ? planet.mass.massValue : '-'}<sup>{planet.mass ? planet.mass.massExponent : ''}</sup> kg</span>
                     <span className="row"><span className="p">Density:</span> {planet.density ? planet.density : '-'} g/cm<sup>3</sup></span>
                     <span className="row"><span className="p">Equatorial radius:</span> {planet.equaRadius ? planet.equaRadius : '-'} km</span>
                     <span className="row"><span className="p">Flattening: </span>{planet.flattening ? planet.flattening: '-'} </span>
@@ -19,6 +21,7 @@ const SinglePlanet = ({planet}) => {
                     <span className="row"><span className="p">Moons: </span>{planet.moons ? planet.moons.length : "-"} </span>
                 </div> 
             </div>
+            </>
         )
    
 }

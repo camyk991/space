@@ -1,6 +1,7 @@
 import PlanetListItem from "../planetListItem";
 import SinglePlanet from "../singlePlanet";
 import React, {useState, useEffect} from 'react';
+import {logout} from '../../firebase'
 import './style.css';
 
 const PlanetList = ({planets, chosen, setChosen}) => {
@@ -10,6 +11,13 @@ const PlanetList = ({planets, chosen, setChosen}) => {
     const [filtered, setFilters] = useState();
     // const [chosenPlanet, setChosenPlanet] = useState('');
     const [filteredSingle, setFilteredSingle] = useState();
+
+    const smallPlanetImages = {
+        "ceres": "https://www.pngkey.com/png/full/425-4254471_ceres-is-the-only-dwarf-planet-in-the.png" ,
+        "eris": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Eris-transparent.png/1200px-Eris-transparent.png",
+        "haumea": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Haumea_Rotation.gif",
+        "makemake": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Makemake-transparent-red.png"
+    }
 
     useEffect(() => {
         if (!searchBar)
@@ -52,11 +60,21 @@ const PlanetList = ({planets, chosen, setChosen}) => {
         return planets.filter((el) => el.id === body)[0]
     }
 
+    async function handleLogout(){
+  
+        try{
+            setChosen(null)
+            await logout();
+        }catch{
+          alert("error!");
+        }
+    
+      }
 
     return (
         <>
-            <button className="logout">Log out</button>
-            {filteredSingle ? <SinglePlanet planet={filteredSingle} /> : null}
+            <button className="logout" onClick={handleLogout}>Log out</button>
+            {filteredSingle ? <SinglePlanet planet={filteredSingle} img={smallPlanetImages}/> : null}
             
             <div
             className={`search-menu ${menu ? `show` : ``}`}

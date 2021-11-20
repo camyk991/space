@@ -11,7 +11,7 @@
     animation-name: fadeInOutOpacity;
       animation-iteration-count: 1;
       animation-timing-function: ease-in;
-      animation-duration: 3s;
+      animation-duration: 6s;
   }
   
   @keyframes fadeInOutOpacity {

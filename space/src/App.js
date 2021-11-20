@@ -18,10 +18,11 @@ function App() {
   const [chosenPlanet, setChosenPlanet] = useState('');
 
   useEffect(()=> {
-    setTimeout(()=>{setLogin(true)}, 3000);  
+    setTimeout(()=>{setLogin(true)}, 6000);  
   }, [])
 
   const [planets, setPlanets] = useState();
+
 
   const fetchData = async () => {
     try {
@@ -39,18 +40,25 @@ function App() {
   };
 
   useEffect(() => {
+    let three = document.querySelector('#planets-3d');
+    three.style.visibility = "hidden";
+
+
+    setTimeout(() => {
+      three.style.visibility = "visible"
+    }, 2000)
     return fetchData();
   }, []);
 
   return (
     <div className="App">
       <Logo />
-      {login && currentUser===null ? <LoginForm user={currentUser} onLogin={setIntro} setLogin ={setLogin}/> : ()=><>setIntro(true)</>}
-      {intro ? <Intro /> : null}
-      {intro ? <Countdown /> : null}
-      <Galaxy />
-      <Planets chosen={chosenPlanet} />
-      <PlanetList planets={planets} chosen={chosenPlanet} setChosen={setChosenPlanet}/>
+      {login && currentUser===null ? <LoginForm user={currentUser} /> : null}
+      {currentUser !== null ? <Planets chosen={chosenPlanet} /> : null}
+      {currentUser === null ? <Galaxy /> : null}
+      {currentUser !== null ? <PlanetList planets={planets} chosen={chosenPlanet} setChosen={setChosenPlanet}/> : null}
+
+      
 
     </div>
   );
