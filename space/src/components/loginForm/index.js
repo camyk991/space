@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { signup, login,  logout, useAuth } from "../../firebase";
 import "./loginForm.css"
 function LoginForm({user, onLogin, setLogin}) {
