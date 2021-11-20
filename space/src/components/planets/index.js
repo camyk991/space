@@ -294,7 +294,6 @@ class Planets extends Component {
       "uranus": 28.8,
       "neptune": 33.8,
       "pluton": 38.8,
-      "ceres": 46,
       "eris": 46,
       "ceres": 46,
       "haumea": 46,
