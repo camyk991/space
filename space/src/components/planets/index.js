@@ -316,10 +316,9 @@ class Planets extends Component {
       });
     };
 
-    $('.planet-list-wrapper').on('click', '.planetItemList', function(e) {
+    $(".planet-list-wrapper").on("click", ".planetItemList", function (e) {
       animateCamera($(this)[0].id);
-    })
-     
+    });
 
     camera.rotation.y = -1;
 
@@ -346,8 +345,6 @@ class Planets extends Component {
     return <div id="planets-3d" ref={(ref) => (this.mount = ref)} />;
   }
 }
-
-
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<Planets />, rootElement);
