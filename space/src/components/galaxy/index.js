@@ -8,21 +8,11 @@ import * as dat from "dat.gui";
 
 //animation
 import gsap from "gsap";
-// import { EffectComposer } from "../../../node_modules/three/examples/jsm/postprocessing/EffectComposer.js";
-// import { RenderPass } from "../../../node_modules/three/examples/jsm/postprocessing/RenderPass.js";
-// import { UnrealBloomPass } from "../../../node_modules/three/examples/jsm/postprocessing/UnrealBloomPass.js";
 
 //camera movement
 import { OrbitControls } from "../../../node_modules/three/examples/jsm/controls/OrbitControls.js";
 
-import moonColorImage from "./static/textures/moon/color.jpg";
-import moonNormalImage from "./static/textures/moon/normal.jpg";
-
 import starsColorImage from "./static/stars.png";
-
-const explore = document.createElement("button");
-explore.innerHTML = "start exploring";
-explore.style.position = "absolute";
 
 class Galaxy extends Component {
   componentDidMount() {
@@ -31,26 +21,11 @@ class Galaxy extends Component {
 
     //------------------LOADING TEXTURES---------------
     const textureLoader = new THREE.TextureLoader();
-    const moonColorTexture = textureLoader.load(moonColorImage);
-    const moonNormalTexture = textureLoader.load(moonNormalImage);
 
     const starsTexture = textureLoader.load(starsColorImage);
 
     //-------------------SCENE SETUP----------------
     const scene = new THREE.Scene();
-
-    // const material = new THREE.MeshStandardMaterial();
-
-    // material.map = moonColorTexture;
-    // material.normalMap = moonNormalTexture; //adds details
-    // material.normalScale.set(0.3, 0.3);
-
-    // const moon = new THREE.Mesh(
-    //   new THREE.SphereBufferGeometry(1, 100, 100),
-    //   material
-    // );
-
-    // scene.add(moon);
 
     //--------------------GALAXY------------------
     const parameters = {
@@ -104,6 +79,8 @@ class Galaxy extends Component {
         //---------------POSITION---------------
         const radius = Math.random() * parameters.radius;
 
+        const spinAngle = radius * parameters.spin * 0.3; //the farther from the center the more spin
+
         const branchAngle =
           ((i % parameters.branches) / parameters.branches) * Math.PI * 2;
 
@@ -111,13 +88,14 @@ class Galaxy extends Component {
         const randomY = randomAxis(radius);
         const randomZ = randomAxis(radius);
 
-        // positions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
-        // positions[i3 + 1] = randomY;
-        // positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
+        positions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
+        positions[i3 + 1] = randomY;
+        positions[i3 + 2] =
+          Math.sin(branchAngle + spinAngle) * radius + randomZ;
 
-        positions[i3] = Math.cos(branchAngle) * radius;
-        positions[i3 + 1] = 0.0;
-        positions[i3 + 2] = Math.sin(branchAngle) * radius;
+        // positions[i3] = Math.cos(branchAngle) * radius;
+        // positions[i3 + 1] = 0.0;
+        // positions[i3 + 2] = Math.sin(branchAngle) * radius;
 
         //randomness
         randomness[i3] = randomX;
@@ -178,7 +156,7 @@ class Galaxy extends Component {
                 //spin
                 float angle = atan(modelPosition.x, modelPosition.z);
                 float distanceToCenter = length(modelPosition.xz);
-                float angleOffset = (1.0 / distanceToCenter) * uTime * 0.2;
+                float angleOffset = (1.0 / distanceToCenter) * uTime * 0.08;
                 angle += angleOffset;
                 //animated galaxy
                 modelPosition.x = cos(angle) * distanceToCenter;
@@ -199,19 +177,6 @@ class Galaxy extends Component {
         fragmentShader: `
             varying vec3 vColor;
             void main(){
-                //----------1 way of drawing circles-----------------
-                //distance to the center
-                //float strenght = distance(gl_PointCoord, vec2(0.5));
-                //sharpening the edges
-                //strenght = step(0.5, strenght);
-                //drawing circles instead of squares
-                //strenght = 1.0 - strenght;
-                //--------------2 way of drawing circles------------------
-                //diffuse point
-                // float strenght = distance(gl_PointCoord, vec2(0.5));
-                // strenght *= 2.0;
-                // strenght = 1.0 - strenght;
-                //--------------3 way of drawing circles------------------
                 //light point
                 float strenght = distance(gl_PointCoord, vec2(0.5));
                 strenght = 1.0 - strenght;
@@ -296,7 +261,7 @@ class Galaxy extends Component {
       particles = new THREE.Points(particlesGeometry, particlesMaterial);
       scene.add(particles);
     };
-    generateStaticGalaxy();
+    //generateStaticGalaxy();
 
     //------------------------STARS---------------------
     // galaxy geometry
@@ -347,53 +312,16 @@ class Galaxy extends Component {
     camera.position.set(1, 4, 8);
     scene.add(camera);
 
-    //-------------------ANIMATE CAMERA----------------
-    //explore animation
-    let explorer = false;
-
-    explore.addEventListener("click", () => {
-      if (!gsap.isTweening(camera.position)) {
-        gsap.to(camera.position, {
-          duration: 1,
-          z: explorer ? 20 : 4,
-          ease: "power3.inOut",
-        });
-        explore.innerHTML = explorer ? "start exploring" : "go back";
-        explorer = !explorer;
-      }
-    });
-
     //--------------------CAMERA CONTROLS----------------
     //const controls = new OrbitControls(camera, document.getElementById("root"));
     //controls.enableDamping = true;
-
-    //-----------------------DEBUGGING----------------------
-    // gui
-    //   .add(parameters, "count", 100, 100000, 100)
-    //   .onFinishChange(genenateGalaxy);
-    // gui
-    //   .add(parameters, "size", 0.001, 0.1, 0.001)
-    //   .onFinishChange(genenateGalaxy);
-    // gui
-    //   .add(parameters, "radius", 0.01, 20, 0.01)
-    //   .onFinishChange(genenateGalaxy);
-    // gui.add(parameters, "branches", 2, 20, 1).onFinishChange(genenateGalaxy);
-    // gui.add(parameters, "spin", -5, 5, 0.001).onFinishChange(genenateGalaxy);
-    // gui
-    //   .add(parameters, "randomness", 0, 2, 0.001)
-    //   .onFinishChange(genenateGalaxy);
-    // gui
-    //   .add(parameters, "randomnessPower", 1, 10, 0.001)
-    //   .onFinishChange(genenateGalaxy);
-    // gui.addColor(parameters, "insideColor").onFinishChange(genenateGalaxy);
-    // gui.addColor(parameters, "outsideColor").onFinishChange(genenateGalaxy);
 
     //-----------------------RENDERER-------------------
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(sizes.width, sizes.height);
     this.mount.appendChild(renderer.domElement);
 
-    //generateAnimatedGalaxy();
+    generateAnimatedGalaxy();
 
     const clock = new THREE.Clock();
     //--------------------ANIMATION------------------
@@ -401,9 +329,9 @@ class Galaxy extends Component {
       const elapsedTime = clock.getElapsedTime();
       //moon.rotation.y = 0.1 * elapsedTime;
 
-      //particlesMaterial.uniforms.uTime.value = elapsedTime;
+      particlesMaterial.uniforms.uTime.value = elapsedTime;
 
-     // controls.update();
+      // controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(tick);
     };
@@ -416,6 +344,5 @@ class Galaxy extends Component {
 }
 const rootElement = document.getElementById("root");
 ReactDOM.render(<Galaxy />, rootElement);
-rootElement.appendChild(explore);
 
 export default Galaxy;
