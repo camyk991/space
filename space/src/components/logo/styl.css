@@ -4,14 +4,20 @@
     left: 50%;
     width: 600px;
     transform: translate(-50%, -50%);
+    z-index: 10;
 }
-
+.test {
+    position: absolute;
+    width:100vw;
+    height:100vh;
+    background-color: black;
+}
 .fadeinOut{
     opacity: 0;
     animation-name: fadeInOutOpacity;
-      animation-iteration-count: 1;
-      animation-timing-function: ease-in;
-      animation-duration: 6s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 6s;
   }
   
   @keyframes fadeInOutOpacity {
