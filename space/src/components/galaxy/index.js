@@ -20,6 +20,10 @@ import moonNormalImage from "./static/textures/moon/normal.jpg";
 
 import starsColorImage from "./static/stars.png";
 
+const explore = document.createElement("button");
+explore.innerHTML = "start exploring";
+explore.style.position = "absolute";
+
 class Galaxy extends Component {
   componentDidMount() {
     //--------------------DEBUGGING-------------------
@@ -364,6 +368,22 @@ class Galaxy extends Component {
     camera.position.set(1, 4, 8);
     scene.add(camera);
 
+    //-------------------ANIMATE CAMERA----------------
+    //explore animation
+    let explorer = false;
+
+    explore.addEventListener("click", () => {
+      if (!gsap.isTweening(camera.position)) {
+        gsap.to(camera.position, {
+          duration: 1,
+          z: explorer ? 20 : 4,
+          ease: "power3.inOut",
+        });
+        explore.innerHTML = explorer ? "start exploring" : "go back";
+        explorer = !explorer;
+      }
+    });
+
     //--------------------CAMERA CONTROLS----------------
     const controls = new OrbitControls(camera, document.getElementById("root"));
     controls.enableDamping = true;
@@ -417,5 +437,6 @@ class Galaxy extends Component {
 }
 const rootElement = document.getElementById("root");
 ReactDOM.render(<Galaxy />, rootElement);
+rootElement.appendChild(explore);
 
 export default Galaxy;
