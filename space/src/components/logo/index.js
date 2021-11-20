@@ -6,7 +6,7 @@ function Logo() {
     return (
         <div className="fadeinOut">
             <img className="logo" src={logo} alt="logo"/>
-            <div className="test"></div>
+            <div className="background"></div>
         </div>
     )
 }
