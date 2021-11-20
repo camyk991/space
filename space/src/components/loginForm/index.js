@@ -3,6 +3,7 @@ import { signup, login,  logout, useAuth } from "../../firebase";
 import "./loginForm.css"
 function LoginForm({user}) {
   const[loading, setLoading] = useState(false);
+  const[errMessage, setErrMessage] = useState('');
   const currentUser = user;
 
   const emailRef = useRef();
@@ -20,16 +21,19 @@ function LoginForm({user}) {
       switch(err.message)
       {
         case "Firebase: Error (auth/wrong-password).":
-          alert("Wrong password");
+          setErrMessage("Wrong password");
+          break;
+        case "Firebase: Error (auth/internal-error).":
+          setErrMessage("Provide a password");
           break;
         case "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).":
-          alert("Access to this account has been temporarily disabled due to many failed login attempts. ");
+          setErrMessage("Access to this account has been temporarily disabled due to many failed login attempts. ");
           break;
         case "Firebase: Password should be at least 6 characters (auth/weak-password).":
-          alert("Password must be at least 6 characters long");
+          setErrMessage("Password must be at least 6 characters long");
           break;
         default:
-          alert(err.message);
+          setErrMessage(err.message);
           break;
       }
     }
@@ -49,16 +53,19 @@ function LoginForm({user}) {
       switch(err.message)
       {
         case "Firebase: Error (auth/invalid-email).":
-          alert("Invalid email");
+          setErrMessage("Invalid email");
+          break;
+        case "Firebase: Error (auth/internal-error).":
+          setErrMessage("Provide a password");
           break;
         case "Firebase: Error (auth/email-already-in-use).":
-          alert("Account with such email already exists");
+          setErrMessage("Account with such email already exists");
           break;
         case "Firebase: Password should be at least 6 characters (auth/weak-password).":
-          alert("Password must be at least 6 characters long");
+          setErrMessage("Password must be at least 6 characters long");
           break;
         default:
-          alert(err.message);
+          setErrMessage(err.message);
           break;
       }
 
@@ -73,12 +80,14 @@ function LoginForm({user}) {
         <input className="email" ref={emailRef} placeholder="Email" />
         <input className="password" ref={passwordRef} type="password" placeholder="Password" />
       </div>
+
+      <div className="error-message">{errMessage}</div>
         
       <button className="signup" disabled={loading || currentUser} onClick={handleSignup}>Sign Up</button>
 
       <button className="login" disabled={loading || currentUser} onClick={handleLogin}>Log In</button>
 
-
+    
     </div>
   );
 }

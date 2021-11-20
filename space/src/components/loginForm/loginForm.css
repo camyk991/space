@@ -2,6 +2,7 @@ h1{
     margin-top: 20px;
     color:  #ffffffac;
     text-align: center;
+    font-weight: 400;
 }
 
  .loginForm{
@@ -22,6 +23,7 @@ h1{
 
 .signup{
     background-color: #d74040;
+    margin-top: 10px;
 }
 
 .login{
@@ -31,7 +33,7 @@ h1{
   input {
     display: block;
     font-size: 18px;
-    margin: 50px auto;
+    margin: 0 auto;
     width: 400px;
     height: 50px;
     text-align: center;
@@ -58,6 +60,17 @@ h1{
     cursor: pointer;
     font-family: 'Cutive Mono', monospace;
   }
+
+  .email{
+    margin: 25px auto;
+  }
+
+  .password{
+    margin-top: 50px;
+    margin-bottom: 25px;
+  }
+
+  
 
   .login:hover{
     background-color: #4946d3;
@@ -99,4 +112,11 @@ h1{
       100%{
         opacity: 1;
     }
+  }
+
+  .error-message{
+    color: red;
+    font-size: 18px;
+    min-height: 18px;
+    margin-bottom: 25px;
   }
