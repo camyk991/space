@@ -23,6 +23,9 @@ function LoginForm({user}) {
         case "Firebase: Error (auth/wrong-password).":
           setErrMessage("Wrong password");
           break;
+        case "Firebase: Error (auth/user-not-found).":
+          setErrMessage("User not found");
+          break;
         case "Firebase: Error (auth/internal-error).":
           setErrMessage("Provide a password");
           break;
