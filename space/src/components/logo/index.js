@@ -4,8 +4,8 @@ import './styl.css'
 
 function Logo() {
     return (
-        <div>
-            <img src={logo} alt="logo"/>
+        <div className="fadeinOut">
+            <img className="logo" src={logo} alt="logo"/>
         </div>
     )
 }
