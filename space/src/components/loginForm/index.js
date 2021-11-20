@@ -25,6 +25,7 @@ function LoginForm({user}) {
           break;
         case "Firebase: Error (auth/user-not-found).":
           setErrMessage("User not found");
+          break;
           case "Firebase: Error (auth/network-request-failed).":
           setErrMessage("Not connected to internet");
           break;
